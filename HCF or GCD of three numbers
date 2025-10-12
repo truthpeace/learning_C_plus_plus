@@ -1,0 +1,98 @@
+// learning numbers;
+// learning C++;
+// learning to find out Highest Common Factor (HCF) or Greatest Common Divisor (GCD) of three number
+// by prime factorization method
+#include<iostream>
+#include<list>
+#include<algorithm>
+using namespace std;
+int is_prime(int number) {
+	list<int> factors = {};
+	for (int i = 1; i <= number; i++) {
+		if (number % i == 0) {
+			factors.push_back(i);
+		}
+	}
+	return factors.size() == 2;
+}
+int main() {
+	int a, b, c;
+	cout << "Enter first number = " << endl;
+	cin >> a;
+	cout << "Enter second number = " << endl;
+	cin >> b;
+	cout << "Enter third number = " << endl;
+	cin >> c;
+	std::list<int> factors = {};
+	std::list<int> factorization_a = {};
+	std::list<int> factorization_b = {};
+	std::list<int> factorization_c = {};
+	for (int i = 1; i <= a; i++) {
+		for (int j = 1; j <= i; j++) {
+			if (i % j == 0) {
+				factors.push_back(j);
+			}
+		}
+		if (factors.size() == 2) {
+			while (a % i == 0) {
+				factorization_a.push_back(i);
+				a = a / i;
+				if (a == 1) {
+					break;
+				}
+			}
+		}
+		factors.clear();
+	}
+	factors.clear();
+	for (int i = 1; i <= b; i++) {
+		for (int j = 1; j <= i; j++) {
+			if (i % j == 0) {
+				factors.push_back(j);
+			}
+		}
+		if (factors.size() == 2) {
+			while (b % i == 0) {
+				factorization_b.push_back(i);
+				b = b / i;
+				if (b == 1) {
+					break;
+				}
+			}
+		}
+		factors.clear();
+	}
+	factors.clear();
+	for (int i = 1; i <= c; i++) {
+		for (int j = 1; j <= i; j++) {
+			if (i % j == 0) {
+				factors.push_back(j);
+			}
+		}
+		if (factors.size() == 2) {
+			while (c % i == 0) {
+				factorization_c.push_back(i);
+				c = c / i;
+				if (c == 1) {
+					break;
+				}
+			}
+		}
+		factors.clear();
+	}
+	list<int> common_factors = {};
+	for (int num : factorization_a) {
+		auto it = std::find(factorization_b.begin(), factorization_b.end(), num);
+		if (it != factorization_b.end()) {
+			auto ti = std::find(factorization_c.begin(), factorization_c.end(), num);
+			if (ti != factorization_c.end()){
+			common_factors.push_back(num);
+			}
+		}
+	}
+	int hcf = 1;
+	for (int num : common_factors) {
+		hcf *= num;
+	}
+	cout << "HCF is " << hcf << endl;
+}
