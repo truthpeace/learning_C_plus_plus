@@ -1,0 +1,30 @@
+// Learning Goal: to study numbers
+// learning to identify a number as a prime number or a composite number
+// c plus plus
+// c++
+#include<iostream>
+#include<list>
+using namespace std;
+int is_prime(int number) {
+	list<int> factors = {};
+	for (int i = 1; i <= number; i++) {
+		if (number % i == 0) {
+			factors.push_back(i);
+		}
+	}
+	return factors.size() == 2;
+}
+int main() {
+	int number;
+	cout << "Enter a number = " << endl;
+	cin >> number;
+	if (number == 1) {
+		cout << number << " is neither a prime number nor a composite number. " << endl;
+	}
+	else if (is_prime(number) == true) {
+		cout << number << " is a prime number. " << endl;
+	}
+	else {
+		cout << number << " is a composite number. " << endl;
+	}
+}
