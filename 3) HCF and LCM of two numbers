@@ -1,0 +1,25 @@
+// learning to find Highest Common Factor or Greatest Common Divisor of two numbers
+// then, learning to find Lowest Common Multiple of two numbers
+// c plus plus
+#include<iostream>
+#include<list>
+using namespace std;
+int main() {
+	int a, b;
+	cout << "Enter first number = " << endl;
+	cin >> a;
+	cout << "Enter second number = " << endl;
+	cin >> b;
+	list<int> c_f = {};
+	for (int i = 1; i <= a; i++) {
+		if (a % i == 0) {
+			if (b % i == 0) {
+				c_f.push_back(i);
+			}
+		}
+	}
+	cout << "HCF is " << c_f.back() << endl;
+	int lcm; 
+	lcm = (a * b) / c_f.back();
+	cout << "LCM is " << lcm << endl;
+}
