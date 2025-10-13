@@ -1,0 +1,73 @@
+// learning to find out HCF of three numbers by prime factorization
+// after correction from previous post (file 1);
+// c++ 
+// c plus plus
+#include<iostream>
+#include<list>
+#include<algorithm>
+using namespace std;
+int is_prime(int number) {
+	list<int> factors = {};
+	for (int i = 1; i <= number; i++) {
+		if (number % i == 0) {
+			factors.push_back(i);
+		}
+	}
+	return factors.size() == 2;
+}
+int main() {
+	int a, b, c;
+	cout << "Enter first number = " << endl;
+	cin >> a;
+	cout << "Enter second number = " << endl;
+	cin >> b;
+	cout << "Enter third number = " << endl;
+	cin >> c;
+	std::list<int> factorization_a = {};
+	std::list<int> factorization_b = {};
+	std::list<int> factorization_c = {};
+	for (int i = 1; i <= a; i++) {
+		while (is_prime(i) == true && a % i == 0) {
+			factorization_a.push_back(i);
+			a = a / i;
+			if (a == 1) {
+				break;
+			}
+		}
+	}
+	for (int i = 1; i <= b; i++) {
+		while (is_prime(i) == true && b % i == 0) {
+			factorization_b.push_back(i);
+			b = b / i;
+			if (b == 1) {
+				break;
+			}
+		}
+	}
+	for (int i = 1; i <= c; i++) {
+		while (is_prime(i) == true && c % i == 0) {
+			factorization_c.push_back(i);
+			c = c / i;
+			if (c == 1) {
+				break;
+			}
+		}
+	}
+	std::list<int> common_factors = {};
+	for (int num : factorization_a) {
+		auto it = std::find(factorization_b.begin(), factorization_b.end(), num);
+		if (it != factorization_b.end()) {
+			auto ti = std::find(factorization_c.begin(), factorization_c.end(), num);
+			if (ti != factorization_c.end()) {
+				common_factors.push_back(num);
+				factorization_b.erase(it);
+				factorization_c.erase(ti);
+			}
+		}
+	}
+	int hcf = 1;
+	for (int num : common_factors) {
+		hcf *= num;
+	}
+	cout << "HCF is = " << hcf << endl;
+}
