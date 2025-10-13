@@ -1,0 +1,52 @@
+// Learning Goal: to study numbers
+// Learning objective : learning to find HCF of any number of numbers
+// c plus plus
+// c ++
+#include<iostream>
+#include<list>
+#include<algorithm>
+using namespace std;
+int is_prime(int number) {
+	list<int> factors = {};
+	for (int i = 1; i <= number; i++) {
+		if (number % i == 0) {
+			factors.push_back(i);
+		}
+	}
+	return factors.size() == 2;
+}
+bool is_divisible(const std::list<int>& numList, int divisor) {
+	for (int num : numList) {
+		if (num % divisor != 0) {
+			return false;
+		}
+	}
+	return true;
+}
+int main() {
+	int num_of_numbers, number;
+	list<int> list_of_numbers = {};
+	cout << "How many numbers do you want to find HCF of " << endl;
+	cin >> num_of_numbers;
+	for (int i = 0; i < num_of_numbers; i++) {
+		cout << "Enter your number " << endl;
+		cin >> number;
+		list_of_numbers.push_back(number);
+	}
+	list<int> factors = {};
+	for (int i = 1; i <= list_of_numbers.front(); i++) {
+		if (list_of_numbers.front() % i == 0) {
+			factors.push_back(i);
+		}
+	}
+	std::list<int> common_factors = {};
+	for (std::list<int>::iterator it = factors.begin(); it != factors.end(); ++it) {
+			if (is_divisible(list_of_numbers, *it)== true) {
+				common_factors.push_back(*it);
+		}
+		}
+	for (int num : common_factors) {
+		cout << "Common factors are " << num << endl;
+	}
+	cout << "HCF = " << common_factors.back() << endl;
+}
