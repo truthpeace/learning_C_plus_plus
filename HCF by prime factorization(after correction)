@@ -1,0 +1,67 @@
+// Learning Goal: to study numbers
+// Learning objective : learning to find HCF of any number of numbers by prime factorization
+// c plus plus
+// c ++
+#include<iostream>
+#include<list>
+#include<algorithm>
+using namespace std;
+int is_prime(int number) {
+	// to identify prime numbers
+	list<int> factors = {};
+	for (int i = 1; i <= number; i++) {
+		if (number % i == 0) {
+			factors.push_back(i);
+		}
+	}
+	return factors.size() == 2;
+}
+bool is_divisible(const std::list<int>& numList, int divisor) {
+	// to identify if all numbers in a list is divisible by a number
+	for (int num : numList) {
+		if (num % divisor != 0) {
+			return false;
+		}
+	}
+	return true;
+}
+int main() {
+	int num_of_numbers, number;
+	std::list<int> list_of_numbers = {};
+	cout << "How many numbers do you want to find HCF of ? " << endl;
+	cin >> num_of_numbers;
+	for (int i = 0; i < num_of_numbers; i++) {
+		cout << "Enter your number " << endl;
+		cin >> number;
+		list_of_numbers.push_back(number);
+	}
+	// finding the minimum value from the list of numbers
+	auto min_it = std::min_element(list_of_numbers.begin(), list_of_numbers.end());
+	int min_value = *min_it;
+	list<int> factors = {};
+	// finding the prime factors of the minimum value of the list
+	for (int i = 1; i <= min_value; i++) {
+		while ((is_prime(i) == true) && (min_value % i == 0)){
+			factors.push_back(i);
+			min_value = min_value / i;
+			if (min_value == 1) {
+				break;
+			}
+		}
+	}
+	// checking if all the numbers in the list is divisible by the prime factors of the minimum value of the list;
+	// then, we add to the list of common_factors
+	std::list<int> common_factors = {};
+	for (std::list<int>::iterator it = factors.begin(); it != factors.end(); ++it) {
+		if (is_divisible(list_of_numbers, *it) == true) {
+			common_factors.push_back(*it);
+			
+		}
+	}
+	// finding the hcf from the common factors (common prime factors)
+	int hcf = 1;
+	for (int num : common_factors) {
+		hcf *= num;
+	}
+	cout << "HCF is = " << hcf << endl;
+}
