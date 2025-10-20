@@ -1,0 +1,35 @@
+// learning Goal: to study numbers
+// Learning Objective: learning to find out prime factorization of a number
+// c plus plus
+// C++
+// volunteering (learning for all, learning for fun);
+#include<iostream>
+#include<list>
+using namespace std;
+int main() {
+	int number;
+	cout << "Enter a number = " << endl;
+	cin >> number;
+	list<int> factors = {};
+	list<int> factorization = {};
+	for (int i = 1; i <= number; i++) {
+		for (int j = 1; j <= i; j++) {
+			if (i % j == 0) {
+				factors.push_back(j);
+			}
+		}
+		if (factors.size() == 2) {
+			while (number % i == 0) {
+				factorization.push_back(i);
+				number = number / i;
+				if (number == 1) {
+					break;
+				}
+			}
+		}
+		factors.clear();
+	}
+	for (int num : factorization) {
+		cout << "Prime factors are = " << num << endl;
+	}
+}
