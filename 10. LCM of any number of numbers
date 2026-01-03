@@ -1,0 +1,42 @@
+// Learning Goal: to study numbers
+// learning objective:  to find out LCM of any number of numbers
+// C++
+
+
+#include<iostream>
+#include<list>
+#include<algorithm>
+using namespace std;
+bool is_divisible(const std::list<int>& numList, int divisor) {
+	for (int num : numList) {
+		if (divisor % num != 0) {
+			return false;
+		}
+	}
+	return true;
+}
+int main() {
+	int num_of_numbers, number;
+	int product = 1;
+	list<int> list_of_numbers = {};
+	cout << "How many numbers do you want to find LCM of ? " << endl;
+	cin >> num_of_numbers;
+	for (int i = 0; i < num_of_numbers; i++) {
+		cout << "Enter your number " << endl;
+		cin >> number;
+		list_of_numbers.push_back(number);
+
+	}
+	for (int num : list_of_numbers) {
+		product *= num;
+	}
+	std::list<int> common_multiples = {};
+
+	for(int i = 1;i<= product; i++){
+		if ((is_divisible(list_of_numbers, i) == true)) {
+			common_multiples.push_back(i);
+			break;
+		}
+	}
+	cout << "LCM is " << common_multiples.front();
+}
