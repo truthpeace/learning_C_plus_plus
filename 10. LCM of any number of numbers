@@ -7,9 +7,9 @@
 #include<list>
 #include<algorithm>
 using namespace std;
-bool is_divisible(const std::list<int>& numList, int divisor) {
+bool is_divisible(const std::list<int>& numList, int number) {
 	for (int num : numList) {
-		if (divisor % num != 0) {
+		if (number % num != 0) {
 			return false;
 		}
 	}
