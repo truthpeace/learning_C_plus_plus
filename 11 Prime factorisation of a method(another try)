@@ -1,0 +1,28 @@
+// Learning Goal: to study numbers;
+// learning to find out prime factorization of a number
+// c plus plus
+// another try to get process correct;
+#include<iostream>
+using namespace std;
+int main() {
+	int number;
+	cout << "Enter a number = " << endl;
+	cin >> number;
+	for (int i = 2; i <= number; i++) {
+		int factors_count = 0;
+		for (int j = 2; j < i; j++) {
+			if (i % j == 0) {
+				factors_count += 1;
+			}
+		}
+		if (factors_count == 0){
+		while (number % i == 0) {
+			cout << i << endl;
+			number = number / i;
+			if (number == 1) {
+				break;
+			}
+		}
+	}
+}
+}
