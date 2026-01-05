@@ -1,0 +1,17 @@
+// Learning Goal: to study numbers
+// Learning Objective: to study prime factorization
+#include<iostream>
+using namespace std;
+int main() {
+	int number;
+	cout << "Enter a number " << endl;
+	cin >> number;
+	int i = 2; 
+	while (i <= number + 1) {
+		while (number % i == 0) {
+			cout << i << endl;
+			number = number / i;
+		}
+		i+=1;
+	}
+}
