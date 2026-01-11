@@ -1,0 +1,28 @@
+// learning
+// learning to find the sum of digits in a number
+// C++
+// C plus plus
+#include<iostream>
+#include<string>
+using namespace std;
+int main() {
+	// taking integer input as number
+	int number;
+	cout << "Enter a number = " << endl;
+	cin >> number;
+	// converting integer input into string
+	std::string myString = std::to_string(number);
+	// converting string into ascii strings that represent the string
+	std::string ascii_string = myString;
+	// taking initial sum of digits as 0
+	int sum = 0;
+	// taking individual ASCII string 
+	for (char c : ascii_string) {
+		// converting ASCII string to integer //(* for digits 0 to 9)
+		int num = c - '0';
+		// taking sum of individual numbers
+		sum += num;
+	}
+	// print the total
+	cout << "Total sum = " << sum << endl;
+}
