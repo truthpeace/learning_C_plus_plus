@@ -1,0 +1,28 @@
+// Zero Factor Solution of Prime numbers
+// or Universal Solution of Prime numbers
+// Prime numbers have two factors 1 and the number itself, which is a solution;
+// Alternately; if a number has zero number of factors between 1 and the number itself (excluding factors 1 and the number itself);
+// then, it is a prime number; called as Zero Factor Solution of Prime numbers
+// an alternate Universal Solution of Prime numbers
+#include<iostream>
+#include<list>
+using namespace std;
+int is_prime(int number) {
+    list<int> factors = {};
+    for (int i = 2; i < number; i++) {
+        if (number % i == 0) {
+            factors.push_back(i);
+        }
+    }
+    return factors.size() == 0;
+}
+int main() {
+    int number;
+    cout << "Enter a number = " << endl;
+    cin >> number;
+    if (number != 1) {
+        if (is_prime(number) == true) {
+            cout << "It is a prime number. " << endl;
+        }
+    }
+}
