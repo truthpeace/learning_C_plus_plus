@@ -1,0 +1,32 @@
+// learning Goal: learning numbers
+// learning Objective: to find prime prime number of composite number by Zero Factor Solution of prime numbers of Universal Solution of prime numbers
+// Prime or composite number
+// For any number x (as an example)
+// Letsm look for factors other than 1 and x itself;
+// if there are zero factors, then it is a prime number;
+// if we find a factor (other than 1 and itself) then it is a composite number;
+#include<iostream>
+#include<list>
+using namespace std;
+int is_prime(int number){
+	list<int> factors = {};
+for (int i = 2; i < number; i++) {
+		if (number % i == 0) {
+			factors.push_back(i);
+		}
+	}
+	return factors.size() == 0;
+}
+int main() {
+	int number;
+	cout << "Enter a number = " << endl;
+	cin >> number;
+	if (number != 1) {
+		if (is_prime(number) == true) {
+			cout << "It is a prime number. " << endl;
+		}
+		else {
+			cout << "It is a composite number" << endl;
+		}
+	}
+}
