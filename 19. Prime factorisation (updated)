@@ -1,0 +1,23 @@
+// learning Goal: to study numbers
+// learning Objective: to study prime factorisation of a number
+// reproducible in any programming language
+// learning C plus plus
+// little bit shorter
+// updated
+
+#include<iostream>
+using namespace std;
+int main() {
+	int number;
+	cout << "Enter a number = " << endl;
+	cin >> number;
+	for (int i = 2; i <= number; i++) {
+		while (number % i == 0) {
+			cout << i << endl;
+			number = number / i;
+		}
+		if (number == 1) {
+			break;
+		}
+	}
+}
