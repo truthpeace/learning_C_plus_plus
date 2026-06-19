@@ -1,0 +1,61 @@
+// Learning Goal: to study numbers
+// learning to find HCF or GCD of any number of numbers in a list by prime factorisation method
+// after correction
+// correction of file 17
+// learning C++
+// learning C plus plus
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int is_divisible(const std::vector<int>& numList, int divisor) {
+	// to identify if all numberes in a list is divisible by a number
+	for (int num : numList) {
+		if (num % divisor != 0) {
+			return false;
+		}
+	}
+	return true;
+}
+int main() {
+	int num_of_numbers, number;
+	vector<int> list_of_numbers = {};
+	cout << "How many numbers do you want to find HCF of ? " << endl;
+	cin >> num_of_numbers;
+	for (int i = 0; i < num_of_numbers; i++) {
+		cout << "Enter your number = " << endl;
+		cin >> number;
+		list_of_numbers.push_back(number);
+	}
+	// finding the minimum value from the list of numbers
+	auto min_it = std::min_element(list_of_numbers.begin(), list_of_numbers.end());
+	int min_value = *min_it;
+	vector<int> factorisation = {};
+	// find the prime factorisation of the minimum value of the list/vector
+	for (int i = 2; i <= min_value; i++) {
+		while (min_value % i == 0) {
+			factorisation.push_back(i);
+			min_value = min_value / i;
+		}
+		if (min_value == 1) {
+			break;
+		}
+	}
+	// checking if all the numbers in the list(vector) is divisible by the numbers of the factorisation list(vector) of value;
+	// then, we add the list of common_factors
+	std::vector<int> common_factors = {};
+	for (std::vector<int>::iterator it = factorisation.begin(); it != factorisation.end(); ++it) {
+		if (is_divisible(list_of_numbers, *it) == true) {
+			common_factors.push_back(*it);
+			for (int& num : list_of_numbers) {
+				num = num / *it;
+			}
+		}
+	}
+	// finding the hcf from the common factors
+	int hcf = 1;
+	for (int num : common_factors) {
+		hcf *= num;
+	}
+	cout << "HCF is " << hcf << endl;
+}
